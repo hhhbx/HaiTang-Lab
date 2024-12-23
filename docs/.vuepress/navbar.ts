@@ -1,13 +1,22 @@
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 
 export const zhNavbar = defineNavbarConfig([
-  { text: '指南', link: '/' },
-  { text: '博客', link: '/blog/' },
-  { text: '标签', link: '/blog/tags/' },
-  { text: '归档', link: '/blog/archives/' },
+  {text: '指南', link: '/', icon: 'icon-park-outline:guide-board'},
+  {text: '导航', link: '/', icon: 'icon-park-outline:guide-board'},
+  {text: '面试', link: '/', icon: 'icon-park-outline:guide-board'},
+  {text: '博客', link: '/blog/', icon: 'icon-park-outline:guide-board'},
+  {text: '标签', link: '/blog/tags/', icon: 'icon-park-outline:guide-board'},
+  {text: '归档', link: '/blog/archives/', icon: 'icon-park-outline:guide-board'},
+  {
+    text: '开源项目',
+    items: [
+      {text: '海棠AI证件照小程序', link: '/notes/demo/README.md',icon: 'icon-park-outline:guide-board'},
+      {text: '海棠智慧仓ERP系统', link: '/', icon: 'icon-park-outline:guide-board'},
+    ]
+  },
   {
     text: '笔记',
-    items: [{ text: '示例', link: '/notes/demo/README.md' }]
+    items: [{text: '示例', link: '/notes/demo/README.md'}]
   },
 ])
 
