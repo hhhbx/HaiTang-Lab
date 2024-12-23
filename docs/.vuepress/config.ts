@@ -7,12 +7,12 @@ export default defineUserConfig({
   lang: 'zh-CN',
   locales: {
     '/': {
-      title: 'HaiTang-lab',
+      title: 'HaiTang-lab 海棠实验室',
       lang: 'zh-CN',
       description: '海棠实验室',
     },
     '/en/': {
-      title: 'HaiTang-lab',
+      title: 'HaiTang-lab 海棠实验室',
       lang: 'en-US',
       description: '海棠实验室',
     },
