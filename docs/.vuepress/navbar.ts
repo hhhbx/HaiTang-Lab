@@ -22,9 +22,9 @@ export const zhNavbar = defineNavbarConfig([
   },
   {
     text: 'AI编程',
-    link: '/blog/',
+    link: '/notes/theme/ai/配置说明.md',
     icon: 'material-symbols:article-outline',
-    activeMatch: '^/(blog|article)/',
+    activeMatch: '^/config/',
   },
   {
     text: '案例',

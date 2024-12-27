@@ -21,7 +21,7 @@ export default defineThemeConfig({
   navbarSocialInclude: ['github', 'qq'],
 
   footer: {
-    copyright: 'Copyright © 2021-present pengzhanbo',
+    copyright: 'Copyright © 2024-present haitang-lab',
   },
 
   locales: {
