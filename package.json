@@ -1,0 +1,85 @@
+{
+  "name": "haitang-labs",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.1",
+  "author": "pengzhanbo <92916730@qq.com> (https://gitee.com/hhhbx/)",
+  "license": "MIT",
+  "keywords": [
+    "vuepress",
+    "vuepress-next",
+    "Theme",
+    "vuepress theme",
+    "vuepress-theme-plume"
+  ],
+  "engines": {
+    "node": "^18.20.0 || >=20.0.0",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "pnpm clean && pnpm build:package",
+    "build:package": "pnpm -r --stream build",
+    "clean": "pnpm -r --stream clean",
+    "dev": "pnpm --stream '/(dev:package|docs:dev)/'",
+    "dev:package": "pnpm --parallel dev",
+    "docs:dev": "wait-on -d 100 theme/lib/node/index.js && pnpm -F=docs docs:dev",
+    "docs:build": "pnpm -F=docs docs:build",
+    "docs:clean": "pnpm -F=docs docs:clean",
+    "docs:serve": "pnpm -F=docs docs:serve",
+    "lint": "pnpm lint:check && pnpm lint:css",
+    "lint:fix": "pnpm lint:check --fix && pnpm lint:css --fix",
+    "lint:check": "eslint .",
+    "lint:css": "stylelint **/*.{css,vue}",
+    "test": "cross-env TZ=Etc/UTC vitest --coverage",
+    "prepare": "husky",
+    "release": "pnpm release:check && pnpm release:version && pnpm -r publish && pnpm release:sync",
+    "release:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release:check": "pnpm lint && pnpm build",
+    "release:sync": "node scripts/mirror-sync.mjs",
+    "release:version": "bumpp package.json plugins/*/package.json theme/package.json cli/package.json --execute=\"pnpm release:changelog\" --commit \"build: publish v%s\" --all --tag --push"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@pengzhanbo/eslint-config-vue": "^1.22.0",
+    "@pengzhanbo/stylelint-config": "^1.22.0",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "20.12.10",
+    "@types/webpack-env": "^1.18.5",
+    "@vitest/coverage-istanbul": "^2.1.8",
+    "bumpp": "^9.9.2",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-cli": "^5.0.0",
+    "cpx2": "^8.0.0",
+    "cross-env": "7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.17.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "markdown-it": "^14.1.0",
+    "memfs": "^4.15.1",
+    "minimist": "^1.2.8",
+    "rimraf": "^6.0.1",
+    "stylelint": "^16.12.0",
+    "tsconfig-vuepress": "^5.2.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "wait-on": "^8.0.1"
+  },
+  "resolutions": {
+    "esbuild": "^0.24.2"
+  },
+  "lint-staged": {
+    "*": "eslint --fix",
+    "*.{css,vue}": "stylelint --fix",
+    "*.{js,ts,mjs,cjs}": "cross-env TZ=Etc/UTC vitest related --run"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
