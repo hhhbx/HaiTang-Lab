@@ -6,9 +6,9 @@ config:
     full: true
     background: tint-plate
     hero:
-      name: Theme Plume
-      tagline: VuePress Next Theme
-      text: 一个简约易用的，功能丰富的 vuepress 文档&博客 主题
+      name: 海棠实验室
+      tagline: 海棠智慧仓储ERP管理系统
+      text: 一款基于SpringBoot+Vue3框架前后端分离支持SaaS模式的智慧仓储管理ERP系统
       actions:
         -
           theme: brand
@@ -16,8 +16,8 @@ config:
           link: /guide/intro/
         -
           theme: alt
-          text: Github
-          link: https://github.com/pengzhanbo/vuepress-theme-plume
+          text: Gitee
+          link: https://gitee.com/haitang-lab
   -
     type: features
     features:
