@@ -21,6 +21,12 @@ export const zhNavbar = defineNavbarConfig([
     activeMatch: '^/(blog|article)/',
   },
   {
+    text: 'AI编程',
+    link: '/blog/',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/(blog|article)/',
+  },
+  {
     text: '案例',
     link: '/demos/',
     icon: 'map:wind-surfing',
