@@ -40,3 +40,4 @@ jobs:
           branch: gh-pages
           folder: docs/.vuepress/dist
           single-commit: true
+          repository: hhhbx/HaiTang-Lab
