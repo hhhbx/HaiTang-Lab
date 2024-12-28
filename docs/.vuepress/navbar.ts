@@ -22,7 +22,7 @@ export const zhNavbar = defineNavbarConfig([
   },
   {
     text: 'AI编程',
-    link: '/notes/theme/ai/01.Cursor官方指导手册（中文版）.md',
+    link: '/notes/theme/ai/配置说明.md',
     icon: 'material-symbols:article-outline',
     activeMatch: '^/ai/',
   },
