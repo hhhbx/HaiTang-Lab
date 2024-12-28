@@ -1,4 +1,5 @@
 import { defineNotesConfig } from 'vuepress-theme-plume'
+import { aiConfig } from './ai-config'
 // import { plugins } from './plugins'
 import { themeConfig } from './theme-config'
 import { themeGuide } from './theme-guide'
@@ -9,6 +10,7 @@ export const zhNotes = defineNotesConfig({
   link: '/',
   notes: [
     themeGuide,
+    aiConfig,
     themeConfig,
     // plugins,
     tools,

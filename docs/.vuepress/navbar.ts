@@ -20,12 +20,12 @@ export const zhNavbar = defineNavbarConfig([
     icon: 'material-symbols:article-outline',
     activeMatch: '^/(blog|article)/',
   },
-  // {
-  //   text: 'AI编程',
-  //   link: '/notes/theme/ai/配置说明.md',
-  //   icon: 'material-symbols:article-outline',
-  //   activeMatch: '^/config/',
-  // },
+  {
+    text: 'AI编程',
+    link: '/notes/theme/ai/01.Cursor官方指导手册（中文版）.md',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/ai/',
+  },
   {
     text: '案例',
     link: '/demos/',
