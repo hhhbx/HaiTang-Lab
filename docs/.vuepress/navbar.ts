@@ -9,6 +9,12 @@ export const zhNavbar = defineNavbarConfig([
     activeMatch: '^/guide/',
   },
   {
+    text: 'AI编程',
+    link: '/notes/theme/ai/01.Cursor官方手册（中文版）.md',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/ai/',
+  },
+  {
     text: '配置',
     icon: 'icon-park-outline:setting-two',
     link: '/notes/theme/config/配置说明.md',
@@ -21,15 +27,28 @@ export const zhNavbar = defineNavbarConfig([
     activeMatch: '^/(blog|article)/',
   },
   {
-    text: 'AI编程',
-    link: '/notes/theme/ai/配置说明.md',
-    icon: 'material-symbols:article-outline',
-    activeMatch: '^/ai/',
-  },
-  {
     text: '案例',
     link: '/demos/',
     icon: 'map:wind-surfing',
+  },
+  {
+    text: '架构',
+    icon: 'icon-park-outline:more-three',
+    items: [
+      { text: '架构知识体系', link: '/notes/theme/arch/arch-x-overview.md', icon: 'wpf:faq', activeMatch: '^/arch/' },
+      { text: '架构 - 架构基础: 特点,本质...', link: '/notes/theme/arch/arch-x-basic.md', icon: 'line-md:coffee-loop', activeMatch: '^/arch/' },
+      { text: '喝杯奶茶', link: '/sponsor/', icon: 'line-md:coffee-loop' },
+      { text: '主题工具', link: '/tools/', icon: 'jam:tools' },
+      { text: '友情链接', link: '/friends/', icon: 'carbon:friendship' },
+      {
+        text: 'Vuepress',
+        icon: 'logos:vue',
+        items: [
+          { text: '官方文档', link: 'https://v2.vuepress.vuejs.org', icon: 'logos:vue' },
+          { text: '生态系统', link: 'https://ecosystem.vuejs.press/', icon: 'logos:vue' },
+        ],
+      },
+    ],
   },
   {
     text: '更多',

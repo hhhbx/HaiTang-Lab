@@ -8,6 +8,7 @@ export const aiConfig = defineNoteConfig({
       text: 'AI编程',
       collapsed: false,
       items: [
+        '01.Cursor官方手册（中文版）',
         '配置说明',
         '主题配置',
       ],
