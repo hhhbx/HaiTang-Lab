@@ -11,7 +11,7 @@ draft: true
 
 :::important
 
-你可以随时通过 [PR](https://github.com/xxxx) 添加你的 文档 或 博客 到这个页面。
+你可以随时通过 [PR](https://github.com/hhhbx/HaiTang-Lab/edit/main/docs/notes/theme/websit/sites.md) 添加你的 文档 或 博客 到这个页面。
 
 站点预览图片请放到 `docs/.vuepress/public/images/demos` 目录下。推荐使用远程链接，以便可以随时更新它。
 
