@@ -2,37 +2,62 @@ import { defineNavbarConfig } from 'vuepress-theme-plume'
 import { version } from '../../package.json'
 
 export const zhNavbar = defineNavbarConfig([
-  {
-    text: '指南',
-    icon: 'icon-park-outline:guide-board',
-    link: '/notes/theme/guide/介绍.md',
-    activeMatch: '^/guide/',
-  },
+  // {
+  //   text: '指南',
+  //   icon: 'icon-park-outline:guide-board',
+  //   link: '/notes/theme/guide/介绍.md',
+  //   activeMatch: '^/guide/',
+  // },
   {
     text: 'AI编程',
     link: '/notes/theme/ai/01.Cursor官方手册（中文版）.md',
     icon: 'material-symbols:article-outline',
     activeMatch: '^/ai/',
   },
+  // {
+  //   text: '配置',
+  //   icon: 'icon-park-outline:setting-two',
+  //   link: '/notes/theme/config/配置说明.md',
+  //   activeMatch: '^/config/',
+  // },
+  // {
+  //   text: '博客',
+  //   link: '/blog/',
+  //   icon: 'material-symbols:article-outline',
+  //   activeMatch: '^/(blog|article)/',
+  // },
   {
-    text: '配置',
-    icon: 'icon-park-outline:setting-two',
-    link: '/notes/theme/config/配置说明.md',
-    activeMatch: '^/config/',
-  },
-  {
-    text: '博客',
+    text: '面试',
     link: '/blog/',
     icon: 'material-symbols:article-outline',
     activeMatch: '^/(blog|article)/',
   },
+  {
+    text: 'Java',
+    link: '/blog/',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/(blog|article)/',
+  },
+  {
+    text: 'Spring',
+    link: '/blog/',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/(blog|article)/',
+  },
+  {
+    text: '数据库',
+    link: '/blog/',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/(blog|article)/',
+  },
+
   // {
   //   text: '案例',
   //   link: '/demos/',
   //   icon: 'map:wind-surfing',
   // },
   {
-    text: '架构',
+    text: '架构|中间件',
     icon: 'icon-park-outline:more-three',
     items: [
       { text: '架构知识体系', link: '/notes/theme/arch/arch-x-overview.md', icon: 'wpf:faq', activeMatch: '^/arch/' },
@@ -50,6 +75,12 @@ export const zhNavbar = defineNavbarConfig([
       },
     ],
   },
+  // {
+  //   text: '方法论|团队管理',
+  //   link: '/blog/',
+  //   icon: 'material-symbols:article-outline',
+  //   activeMatch: '^/(blog|article)/',
+  // },
   {
     text: '福利汇总',
     icon: 'icon-park-outline:more-three',
@@ -87,14 +118,14 @@ export const zhNavbar = defineNavbarConfig([
       },
     ],
   },
-  {
-    text: `${version}`,
-    icon: 'codicon:versions',
-    items: [
-      { text: '更新日志', link: '/changelog/' },
-      { text: '参与贡献', link: '/contributing/' },
-    ],
-  },
+  // {
+  //   text: `${version}`,
+  //   icon: 'codicon:versions',
+  //   items: [
+  //     { text: '更新日志', link: '/changelog/' },
+  //     { text: '参与贡献', link: '/contributing/' },
+  //   ],
+  // },
 ])
 
 export const enNavbar = defineNavbarConfig([

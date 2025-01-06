@@ -10,13 +10,13 @@ export default defineThemeConfig({
     avatar: '/plume.png',
     name: 'Plume Theme',
     description: 'The Theme for Vuepress 2.0',
-    location: 'GuangZhou, China',
-    organization: 'pengzhanbo',
+    location: 'ShangHai, China',
+    organization: 'haitang-lab',
   },
 
   social: [
     { icon: 'github', link: 'https://gitee.com/haitang-lab' },
-    { icon: 'qq', link: 'https://qm.qq.com/q/FbPPoOIscE' },
+    { icon: 'qq', link: 'https://gitee.com/haitang-lab/HaiTang-lab/blob/master/docs/.vuepress/public/wechat.jpg' },
   ],
   navbarSocialInclude: ['github', 'qq'],
 
