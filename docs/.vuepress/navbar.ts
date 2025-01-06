@@ -26,11 +26,11 @@ export const zhNavbar = defineNavbarConfig([
     icon: 'material-symbols:article-outline',
     activeMatch: '^/(blog|article)/',
   },
-  {
-    text: '案例',
-    link: '/demos/',
-    icon: 'map:wind-surfing',
-  },
+  // {
+  //   text: '案例',
+  //   link: '/demos/',
+  //   icon: 'map:wind-surfing',
+  // },
   {
     text: '架构',
     icon: 'icon-park-outline:more-three',
@@ -46,6 +46,25 @@ export const zhNavbar = defineNavbarConfig([
         items: [
           { text: '官方文档', link: 'https://v2.vuepress.vuejs.org', icon: 'logos:vue' },
           { text: '生态系统', link: 'https://ecosystem.vuejs.press/', icon: 'logos:vue' },
+        ],
+      },
+    ],
+  },
+  {
+    text: '福利汇总',
+    icon: 'icon-park-outline:more-three',
+    items: [
+      { text: '2025年福利汇总第2期 ：喝腊八粥', link: '/notes/theme/fuli/2025002.md', icon: 'line-md:coffee-loop', activeMatch: '^/fuli/' },
+      { text: '2025年福利汇总第1期 ：元旦快乐', link: '/notes/theme/fuli/2025001.md', icon: 'line-md:coffee-loop', activeMatch: '^/fuli/' },
+      { text: '友情链接', link: '/friends/', icon: 'carbon:friendship' },
+      {
+        text: '网站推荐',
+        icon: 'carbon:friendship',
+        items: [
+          { text: '有趣网站', link: '/notes/theme/websit/sites.md', icon: 'material-symbols:article-outline' },
+          { text: 'AI资源站', link: 'https://v2.vuepress.vuejs.org', icon: 'material-symbols:article-outline' },
+          { text: '影视福利', link: 'https://v2.vuepress.vuejs.org', icon: 'material-symbols:article-outline' },
+          { text: '友情链接', link: 'https://v2.vuepress.vuejs.org', icon: 'material-symbols:article-outline' },
         ],
       },
     ],
