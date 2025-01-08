@@ -75,12 +75,12 @@ export const zhNavbar = defineNavbarConfig([
       },
     ],
   },
-  // {
-  //   text: '方法论|团队管理',
-  //   link: '/blog/',
-  //   icon: 'material-symbols:article-outline',
-  //   activeMatch: '^/(blog|article)/',
-  // },
+  {
+    text: '方法论|团队管理',
+    link: '/blog/',
+    icon: 'material-symbols:article-outline',
+    activeMatch: '^/(blog|article)/',
+  },
   {
     text: '福利汇总',
     icon: 'icon-park-outline:more-three',
@@ -98,6 +98,14 @@ export const zhNavbar = defineNavbarConfig([
           { text: '友情链接', link: 'https://v2.vuepress.vuejs.org', icon: 'material-symbols:article-outline' },
         ],
       },
+    ],
+  },
+  {
+    text: `项目`,
+    icon: 'icon-park-outline:more-three',
+    items: [
+      { text: '海棠智慧仓储ERP管理系统', link: '/changelog/' },
+      { text: 'AI证件照小程序', link: '/contributing/' },
     ],
   },
   {

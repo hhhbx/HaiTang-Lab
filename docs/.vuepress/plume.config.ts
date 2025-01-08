@@ -14,11 +14,11 @@ export default defineThemeConfig({
     organization: 'haitang-lab',
   },
 
-  social: [
-    { icon: 'github', link: 'https://gitee.com/haitang-lab' },
-    { icon: 'qq', link: 'https://gitee.com/haitang-lab/HaiTang-lab/blob/master/docs/.vuepress/public/wechat.jpg' },
-  ],
-  navbarSocialInclude: ['github', 'qq'],
+  // social: [
+  //   { icon: 'github', link: 'https://gitee.com/haitang-lab' },
+  //   { icon: 'qq', link: 'https://gitee.com/haitang-lab/HaiTang-lab/blob/master/docs/.vuepress/public/wechat.jpg' },
+  // ],
+  // navbarSocialInclude: ['github', 'qq'],
 
   footer: {
     copyright: 'Copyright © 2024-present haitang-lab',
