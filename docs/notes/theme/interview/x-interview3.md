@@ -11,7 +11,7 @@ permalink: /interview/x-interview3/
 :::
 
 **内容** <br/>
-索引失效有很多种可能，你可以从这个问题里面为什么定义了索引，但是最终数据库却没有用上？找到详细的描述，这个案例描述的是在一些特定的场景下，MySQL 会放弃使用索引，选择使用全表扫描。 就弃用索引选择全表扫描而言，MySQL 本身自认为是做了一个合理的决策，但是实际中可能 MySQL 的这个决策可能效果并不是很好。在这个案例里面我们通过构造 WHERE 查询，导致 MySQL 判定候选的数据非常多，从而放弃使用索引，转而使用全表扫描。
+索引失效有很多种可能，你可以从这个问题里面[为什么定义了索引，但是最终数据库却没有用上？](https://github.com/hhhbx/HaiTang-Lab/blob/main/docs/notes/theme/interview/x-interview4.md)找到详细的描述，这个案例描述的是在一些特定的场景下，MySQL 会放弃使用索引，选择使用全表扫描。 就弃用索引选择全表扫描而言，MySQL 本身自认为是做了一个合理的决策，但是实际中可能 MySQL 的这个决策可能效果并不是很好。在这个案例里面我们通过构造 WHERE 查询，导致 MySQL 判定候选的数据非常多，从而放弃使用索引，转而使用全表扫描。
 
 其实整个案例非常简单。如果你执行这个 SQL：
 
@@ -56,7 +56,7 @@ permalink: /interview/x-interview3/
 **什么是 EXPLAIN 命令？**
 `EXPLAIN` 命令是 MySQL 提供的一个非常有用的工具，它可以让你了解 MySQL 如何执行 SQL 查询。通过 `EXPLAIN` 命令，你可以看到查询的执行计划，包括是否使用了索引、使用了哪种类型的索引、扫描了多少行数据等等。这些信息对于分析查询性能瓶颈、优化 SQL 查询非常有帮助。
 
-**如何使用 EXPLAIN 命令？**
+## 如何使用 EXPLAIN 命令？
 
 使用 `EXPLAIN` 命令非常简单，只需要在 SQL 查询语句前面加上 `EXPLAIN` 关键字即可。例如：
 
@@ -66,7 +66,7 @@ EXPLAIN SELECT * FROM users WHERE id > 10;
 
 执行以上命令后，MySQL 会返回一个结果集，包含查询的执行计划。
 
-** EXPLAIN 命令返回的列
+**EXPLAIN 命令返回的列**
 
 `EXPLAIN` 命令返回的结果集包含多列，每一列都代表了查询执行计划的不同方面。下面是 `EXPLAIN` 命令返回的常用列：
 
@@ -100,7 +100,7 @@ EXPLAIN SELECT * FROM users WHERE id > 10;
 * **关注 rows 列：** `rows` 列表示估计需要扫描的行数。`rows` 列的值越小，查询性能就越高。
 * **关注 Extra 列：** `Extra` 列包含一些额外的信息，例如是否使用了临时表、是否使用了文件排序等。这些信息可以帮助你更深入地了解查询的执行计划。
 
-**如何优化 SQL 查询？**
+## 如何优化 SQL 查询？
 
 通过 `EXPLAIN` 命令分析查询执行计划后，你可以根据分析结果来优化 SQL 查询。以下是一些常见的优化技巧：
 
@@ -108,7 +108,7 @@ EXPLAIN SELECT * FROM users WHERE id > 10;
 * **优化索引：** 如果查询使用了索引，但是索引效率不高，则可以考虑优化索引，例如调整索引列的顺序、添加覆盖索引等。
 * **重写 SQL 查询：** 有时候，SQL 查询的写法不够优化，可以尝试重写 SQL 查询来提高查询性能。
 
-**总结**
+## 总结
 
 `EXPLAIN` 命令是 MySQL 提供的一个非常有用的工具，它可以让你了解 MySQL 如何执行 SQL 查询。通过 `EXPLAIN` 命令，你可以分析查询性能瓶颈，并根据分析结果来优化 SQL 查询。掌握 `EXPLAIN` 命令的使用，对于提高 SQL 查询性能非常有帮助。
 
@@ -120,7 +120,7 @@ EXPLAIN SELECT * FROM users WHERE id > 10;
 
 MySQL 查询优化器会根据查询条件、数据量等因素，自动选择合适的索引来执行查询。但是，在某些情况下，优化器可能会选择不使用索引，或者选择了效率较低的索引，导致查询性能下降。这时，我们可以通过 `FOR INDEX` 来强制 MySQL 使用指定的索引，以提高查询性能。
 
-**如何使用 FOR INDEX？**
+## 如何使用 FOR INDEX？
 
 `FOR INDEX` 语法非常简单，只需要在 SQL 查询语句中的 `FROM` 子句后面加上 `FOR INDEX (index_name)` 即可。其中，`index_name` 是你要强制使用的索引名称。例如：
 
@@ -130,14 +130,14 @@ SELECT * FROM users FOR INDEX (idx_name) WHERE id > 10;
 
 以上 SQL 查询语句会强制 MySQL 使用名为 `idx_name` 的索引来查询 `users` 表中 `id` 大于 10 的数据。
 
-** 使用 FOR INDEX 的注意事项
+##  使用 FOR INDEX 的注意事项
 
 * **确保索引存在：** 在使用 `FOR INDEX` 之前，必须确保指定的索引已经存在。
 * **选择合适的索引：** 选择合适的索引对于提高查询性能非常重要。如果选择了不合适的索引，可能会导致查询性能更差。
 * **了解索引的局限性：** 索引并不是万能的。在某些情况下，即使使用了索引，查询性能也可能无法达到预期。
 * **谨慎使用：** 强制使用索引可能会导致查询性能下降，因此应该谨慎使用。只有在确定优化器选择的索引不合适时，才应该考虑使用 `FOR INDEX`。
 
-**示例**
+## 示例
 
 假设我们有一个名为 `orders` 的表，其中包含 `order_id`、`user_id`、`order_date` 等字段。我们在 `user_id` 字段上创建了一个索引 `idx_user_id`。
 
@@ -153,7 +153,7 @@ SELECT * FROM orders WHERE user_id = 123;
 SELECT * FROM orders FOR INDEX (idx_user_id) WHERE user_id = 123;
 ```
 
-**总结**
+## 总结
 
 `FOR INDEX` 是一种强制 MySQL 使用指定索引的方法。通过 `FOR INDEX`，我们可以控制 MySQL 的查询执行计划，从而提高查询性能。但是，在使用 `FOR INDEX` 时，我们需要注意一些事项，以避免出现意外的问题。
 
