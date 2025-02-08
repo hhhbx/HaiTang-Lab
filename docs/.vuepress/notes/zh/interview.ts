@@ -10,6 +10,8 @@ export const interview = defineNoteConfig({
       items: [
         'x-interview',
         'x-interview2',
+        'x-interview3',
+        'x-interview4',
       ],
     },
 
