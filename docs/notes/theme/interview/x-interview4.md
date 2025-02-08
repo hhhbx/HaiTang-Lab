@@ -53,10 +53,11 @@ permalink: /interview/x-interview4/
 ::: tip
 这里你可以补充一个没有命中索引导致的表锁案例。
 :::
-
+## **由于未命中索引导致表锁的案例**
+## 案例一
 好的，以下是一个更完整的案例，其中包含了由于没有命中索引而导致的表锁案例，并提供了相应的解决方案。
 
-**案例背景**
+### **1.案例背景**
 
 假设我们有一个名为 `products` 的表，其中包含以下字段：
 
@@ -74,11 +75,11 @@ permalink: /interview/x-interview4/
 SELECT * FROM products WHERE category_id = 1;
 ```
 
-**问题描述**
+### **2.问题描述**
 
 在某些情况下，我们可能会发现这个查询执行非常缓慢。通过使用 `EXPLAIN` 命令分析查询执行计划，我们可能会发现 `type` 列的值为 `ALL`，表示查询使用了全表扫描。
 
-**原因分析**
+### **3.原因分析**
 
 `EXPLAIN` 命令的结果表明，MySQL 查询优化器没有选择使用 `idx_category_id` 索引，而是选择了全表扫描。这可能是因为以下原因：
 
@@ -86,11 +87,11 @@ SELECT * FROM products WHERE category_id = 1;
 * **查询条件过于宽泛：** 查询条件 `category_id = 1` 可能匹配了大量的行，导致 MySQL 认为全表扫描比使用索引更快。
 * **其他原因：** 可能存在其他原因导致 MySQL 没有选择使用索引，例如查询语句的写法、数据库配置等。
 
-**表锁问题**
+### **4.表锁问题**
 
 由于查询使用了全表扫描，可能会导致表锁问题。当一个查询需要扫描整个表时，它可能会获取一个表级锁，阻止其他事务对该表进行修改操作，从而影响并发性能。
 
-**解决方案**
+### **5.解决方案**
 
 针对以上问题，我们可以采取以下解决方案：
 
@@ -100,7 +101,7 @@ SELECT * FROM products WHERE category_id = 1;
 4. **分析查询执行计划：** 使用 `EXPLAIN` 命令分析查询执行计划，找出查询性能瓶颈。
 5. **优化数据库配置：** 检查数据库配置，例如 `innodb_buffer_pool_size` 等，确保数据库配置合理。
 
-**案例示例**
+### **6.案例示例**
 
 假设我们发现查询条件 `category_id = 1` 匹配了大量的行，导致 MySQL 选择了全表扫描。我们可以尝试添加其他过滤条件，例如：
 
@@ -114,9 +115,120 @@ SELECT * FROM products WHERE category_id = 1 AND price < 100;
 SELECT * FROM products FOR INDEX (idx_category_id) WHERE category_id = 1 AND price < 100;
 ```
 
-**总结**
+### **7.总结**
 
 通过以上案例，我们可以了解到由于没有命中索引而导致全表扫描和表锁的问题，并学习了如何通过重建索引、优化查询条件、强制使用索引等方法来解决这些问题。在实际开发中，我们需要根据具体情况选择合适的解决方案，以提高查询性能和并发性能。
+
+## 案例二
+
+在 MySQL 数据库中，如果查询没有命中索引，可能会导致 **全表扫描**，进而引发 **表锁**。以下是一个具体的案例，说明如何因为索引未命中导致表锁，并给出优化方案。
+
+---
+
+### **1. 场景描述**
+公司 ERP 系统中有一张 `order` 订单表，该表结构如下：
+
+```sql
+CREATE TABLE `order` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `order_no` VARCHAR(50) NOT NULL,
+    `user_id` BIGINT NOT NULL,
+    `status` TINYINT NOT NULL DEFAULT 0,  -- 订单状态（0:待支付, 1:已支付, 2:已取消）
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_user_id (user_id)  -- 仅对 user_id 建立索引
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+在并发环境下，某个业务逻辑会执行以下 `UPDATE` 语句，修改特定用户的订单状态：
+
+```sql
+UPDATE order SET status = 1 WHERE order_no = 'HT20240208001';
+```
+
+---
+
+### **2. 问题分析**
+执行 `EXPLAIN` 语句查看 SQL 语句的执行计划：
+
+```sql
+EXPLAIN UPDATE order SET status = 1 WHERE order_no = 'HT20240208001';
+```
+
+查询结果如下：
+
+| id | select_type | table | type  | possible_keys | key  | key_len | ref  | rows  | Extra       |
+|----|------------|-------|-------|--------------|------|---------|------|------|-------------|
+| 1  | SIMPLE     | order | ALL   | NULL         | NULL | NULL    | NULL | 100000 | Using where |
+
+#### **问题点**
+- **索引未命中**：表中 **`order_no` 没有索引**，查询条件 `WHERE order_no = 'HT20240208001'` 只能 **全表扫描（ALL）**。
+- **表锁风险**：
+  - InnoDB 默认是 **行锁（row-level lock）**，但**由于没有命中索引**，会导致 **表锁（table lock）**，影响并发操作。
+  - 在高并发环境下，多个事务尝试修改不同 `order_no` 的数据，但由于表锁，**所有事务被串行执行**，导致性能急剧下降。
+
+---
+
+### **3. 复现问题**
+#### **（1）事务A：修改订单状态**
+```sql
+START TRANSACTION;
+UPDATE order SET status = 1 WHERE order_no = 'HT20240208001';
+-- 事务A未提交，表被锁住
+```
+
+#### **（2）事务B：修改另一条订单**
+```sql
+START TRANSACTION;
+UPDATE order SET status = 1 WHERE order_no = 'HT20240208002';
+-- 事务B等待事务A释放锁
+```
+
+此时，**事务 B 被阻塞**，因为 `UPDATE` 语句由于全表扫描导致表锁，使所有对 `order` 表的修改都需要等待事务 A 提交。
+
+---
+
+### **4. 解决方案**
+#### **方案 1：为 `order_no` 创建索引**
+```sql
+ALTER TABLE order ADD INDEX idx_order_no (order_no);
+```
+
+再次执行 `EXPLAIN`，可以看到索引被正确使用：
+
+```sql
+EXPLAIN UPDATE order SET status = 1 WHERE order_no = 'HT20240208001';
+```
+
+| id | select_type | table | type | possible_keys | key         | key_len | ref  | rows | Extra          |
+|----|------------|-------|------|--------------|------------|---------|------|------|----------------|
+| 1  | SIMPLE     | order | ref  | idx_order_no | idx_order_no | 50      | const | 1    | Using index |
+
+- **查询性能提升**：`type` 由 `ALL`（全表扫描）变为 `ref`（使用索引）。
+- **避免表锁**：仅锁住 `order_no = 'HT20240208001'` 的行，事务 B 也可以更新其他 `order_no`，不再阻塞。
+
+---
+
+#### **方案 2：使用 `ORDER BY` + `LIMIT 1`（适用于行锁问题）**
+如果 `order_no` 不是唯一键，可能会影响锁粒度，可以加 `LIMIT 1` 限制影响行数：
+```sql
+UPDATE order SET status = 1 WHERE order_no = 'HT20240208001' LIMIT 1;
+```
+**作用：**
+- MySQL 会尽量锁定少量数据，避免锁住不必要的行。
+
+---
+
+### **5. 总结**
+| 问题 | 影响 | 解决方案 |
+|------|------|---------|
+| 未命中索引导致全表扫描 | 事务执行慢，锁表影响并发 | **创建索引**（`ALTER TABLE order ADD INDEX idx_order_no (order_no)`） |
+| InnoDB 可能锁住过多行 | 事务阻塞，导致并发降低 | **`LIMIT 1` 限制锁行数** |
+
+这个案例展示了：
+1. **索引缺失导致全表扫描，进而引发表锁**。
+2. **索引优化如何显著提高 MySQL 查询性能，避免锁冲突**。
+
+如果你在项目中遇到类似问题，可以尝试 `EXPLAIN` 检查索引命中情况，并优化索引来提升性能 🚀。
 
 - 关键字： 表锁
 - 引导点： 表锁；锁机制；
