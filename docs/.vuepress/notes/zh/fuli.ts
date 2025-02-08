@@ -8,6 +8,7 @@ export const fuli = defineNoteConfig({
       text: '福利汇总',
       collapsed: false,
       items: [
+        '2025003',
         '2025002',
         '2025001',
       ],

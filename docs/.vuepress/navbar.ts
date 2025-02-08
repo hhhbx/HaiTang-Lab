@@ -85,6 +85,7 @@ export const zhNavbar = defineNavbarConfig([
     text: '福利汇总',
     icon: 'icon-park-outline:more-three',
     items: [
+      { text: '2025年福利汇总第3期 ：开工大吉', link: '/notes/theme/fuli/2025003.md', icon: 'line-md:coffee-loop', activeMatch: '^/fuli/' },
       { text: '2025年福利汇总第2期 ：喝腊八粥', link: '/notes/theme/fuli/2025002.md', icon: 'line-md:coffee-loop', activeMatch: '^/fuli/' },
       { text: '2025年福利汇总第1期 ：元旦快乐', link: '/notes/theme/fuli/2025001.md', icon: 'line-md:coffee-loop', activeMatch: '^/fuli/' },
       { text: '友情链接', link: '/friends/', icon: 'carbon:friendship' },
