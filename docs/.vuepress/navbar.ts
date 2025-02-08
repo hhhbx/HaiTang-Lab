@@ -28,9 +28,9 @@ export const zhNavbar = defineNavbarConfig([
   // },
   {
     text: '面试',
-    link: '/blog/',
+    link: '/notes/theme/interview/x-interview.md',
     icon: 'material-symbols:article-outline',
-    activeMatch: '^/(blog|article)/',
+    activeMatch: '^/(interview)/',
   },
   {
     text: 'Java',
