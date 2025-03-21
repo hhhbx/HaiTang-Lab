@@ -11,6 +11,7 @@ export const aiConfig = defineNoteConfig({
         '01.Cursor官方手册（中文版）',
         '配置说明',
         '主题配置',
+        '顶级AI提示词',
       ],
     },
     {
